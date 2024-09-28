@@ -48,7 +48,7 @@ function Order() {
       (acc, product) => acc + product.quantity * product.total,
       0
     );
-    doc.text(`Total: $${totalAmount}`, 20, doc.autoTable.previous.finalY + 10);
+    doc.text(`Total: $${totalAmount}, 20, doc.autoTable.previous.finalY + 10`);
 
     // Save the PDF
     doc.save(`Invoice_${order.customerName}_${orderIndex}.pdf`);
