@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leaflet Ant Path with Markers</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-ant-path"></script>
+    <style>
+        #map {
+            height: 600px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+    
+    <script>
+        // Initialize the map centered at a point close to the first coordinate
+        const map = L.map('map').setView([20.264565654149948, 85.84203832410657], 15);
+
+        // Add OpenStreetMap tile layer
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+        }).addTo(map);
+
+        // GeoJSON data with LineString coordinates
+        const geoJsonData = {
+          "type": "FeatureCollection",
+          "features": [
+            {
+              "type": "Feature",
+              "properties": {},
+              "geometry": {
+                "coordinates": [
+                  [85.84203832410657, 20.264565654149948],
+                  [85.84193070647001, 20.264629593243967],
+                  [85.84215670347743, 20.26488198405758],
+                  [85.842149528969, 20.265120913648047],
+                  [85.84204191134694, 20.26518821769136]
+                ],
+                "type": "LineString"
+              }
+            },
+            {
+              "type": "Feature",
+              "properties": {},
+              "geometry": {
+                "coordinates": [
+                  [-66.06701961683106, 18.368953031100574],
+                  [-66.06668880136986, 18.36885610401275],
+                  [-66.06679315255597, 18.3685800722251],
+                  [-66.06689750374126, 18.368613786054482],
+                  [-66.06700185492738, 18.36851896589178],
+                  [-66.06713284896863, 18.36847471646425],
+                  [-66.06722165848866, 18.368601143369432],
+                  [-66.06725718229609, 18.36864539276452],
+                  [-66.06738595610044, 18.368571643766373],
+                  [-66.06731712872255, 18.368476823579783],
+                  [-66.06725718229609, 18.368504216083863]
+                ],
+                "type": "LineString"
+              }
+            },
+            {
+              "type": "Feature",
+              "properties": {},
+              "geometry": {
+                "coordinates": [
+                  [-66.06723030663355, 18.368365213807394],
+                  [-66.0671803472755, 18.368292269274548],
+                  [-66.06685368993061, 18.36841627496257]
+                ],
+                "type": "LineString"
+              }
+            },
+            {
+              "type": "Feature",
+              "properties": {},
+              "geometry": {
+                "coordinates": [
+                  [-66.06727257993688, 18.368197441334956],
+                  [-66.06735712654422, 18.368303210956157]
+                ],
+                "type": "LineString"
+              }
+            },
+            {
+              "type": "Feature",
+              "properties": {},
+              "geometry": {
+                "coordinates": [
+                  [-66.06760578920489, 18.36748087365143],
+                  [-66.06765931790764, 18.367554766993408],
+                  [-66.06773231159379, 18.36750396532412],
+                  [-66.0678004390332, 18.367573240323722],
+                  [-66.06815567497054, 18.36733770521073],
+                  [-66.06800482135324, 18.367152971563712],
+                  [-66.06735274442799, 18.367286903477563],
+                  [-66.06729434947944, 18.36707445970393],
+                  [-66.06673473122206, 18.367356178564293],
+                  [-66.06685638736508, 18.3675917136529],
+                  [-66.06670066750277, 18.367647133626974]
+                ],
+                "type": "LineString"
+              }
+            }
+          ]
+        };
+
+        // Function to add markers and ant path
+        function addAntPathWithMarkers(feature) {
+            const coords = feature.geometry.coordinates.map(c => [c[1], c[0]]); // Reverse lat/lng order
+            const start = coords[0];
+            const end = coords[coords.length - 1];
+
+            // Add Warehouse Center marker at the start point
+            L.marker(start).addTo(map)
+                .bindPopup('Warehouse Center')
+                .openPopup();
+
+            // Add Speaker marker at the end point
+            L.marker(end).addTo(map)
+                .bindPopup('Speaker')
+                .openPopup();
+
+            // Create Ant Path
+            L.polyline.antPath(coords, {
+                color: '#FF0000', // Red path
+                delay: 1000,
+                pulseColor: '#FFFFFF', // White pulsing effect
+                weight: 5,
+                dashArray: [20, 20],
+                paused: false,
+                reverse: false,
+                hardwareAccelerated: true
+            }).addTo(map);
+        }
+
+        // Parse GeoJSON and add paths and markers
+        L.geoJSON(geoJsonData, {
+            onEachFeature: function (feature, layer) {
+                if (feature.geometry.type === 'LineString') {
+                    addAntPathWithMarkers(feature);
+                }
+            }
+        });
+
+    </script>
+</body>
+</html>

@@ -38,6 +38,12 @@ function Sidebar() {
                     <p>Invoice Generator</p>
                 </div>
             </Link>
+            <Link to={'/navigation'} style={{ textDecoration: "none" }} >
+                <div className="sidebar-item">
+                    <img src={list_product_icon} alt="" />
+                    <p>Navigation</p>
+                </div>
+            </Link>
         </div>
     )
 }

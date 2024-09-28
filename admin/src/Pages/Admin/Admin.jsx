@@ -7,6 +7,7 @@ import ListProduct from '../../Components/ListProduct/ListProduct'
 import Dashboard from '../../Components/Dashboard/Dashboard'
 import Order from '../../Components/Orders/Order'
 import InvoiceGenerator from '../../Components/InvoiceGenerator/invoice'
+import AntPathMap from '../../Components/Navigation/Navigation'
 
 
 function Admin() {
@@ -19,6 +20,8 @@ function Admin() {
                 <Route path='/dashboard' element={<Dashboard/>} ></Route>
                 <Route path='/orderlist' element={<Order/>} ></Route>
                 <Route path='/invoice' element={<InvoiceGenerator/>} ></Route>
+                <Route path='/navigation' element={<AntPathMap/>} ></Route>
+
             </Routes>
         </div>
     )
