@@ -8,7 +8,7 @@ import { ShopContext } from '../Context/ShopContext'
 function Navbar() {
 
     const [menu, setMenu] = useState('shop');
-    const { getTotalCartItems } = useContext(ShopContext)
+    // const { getTotalCartItems } = useContext(ShopContext)
 
 
     return (
@@ -27,13 +27,13 @@ function Navbar() {
             </ul>
 
             <div className="nav-login">
-                {
+                {/* {
                     localStorage.getItem('auth-token') ?
                         <button onClick={() => { localStorage.removeItem('auth-token'); window.location.replace('/') }} >Logout</button>
-                        : <Link to='/login' > <button>Login</button></Link>}
+                        : <Link to='/login' > <button>Login</button></Link>} */}
 
-                <Link to='/cart' >  <img src={cart} alt="" /></Link>
-                <div className="count">{getTotalCartItems()}</div>
+                {/* <Link to='/cart' >  <img src={cart} alt="" /></Link> */}
+                {/* <div className="count">{getTotalCartItems()}</div> */}
             </div>
 
         </div>
