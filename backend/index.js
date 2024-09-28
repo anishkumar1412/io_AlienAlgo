@@ -113,7 +113,7 @@ app.post('/addproduct', async (req, res) => {
         new_price: req.body.new_price,
         old_price: req.body.old_price,
         quantity: req.body.quantity,
-        cost: req.body.cost;
+        cost: req.body.cost,
     });
 
     await product.save();
