@@ -5,6 +5,7 @@ const jwt = require('jsonwebtoken');
 const multer = require('multer');
 const path = require('path');
 const cors = require('cors');
+const { type } = require('os');
 const cloudinary = require('cloudinary').v2;
 // Load environment variables from .env file
 
@@ -81,6 +82,10 @@ const Product = mongoose.model("product", {
     available: {
         type: Boolean,
         default: true
+    },
+    quantity: {
+        type: Number,
+        required: true,
     }
 });
 
@@ -102,7 +107,8 @@ app.post('/addproduct', async (req, res) => {
         image: req.body.image, // This will now store the Cloudinary URL
         category: req.body.category,
         new_price: req.body.new_price,
-        old_price: req.body.old_price
+        old_price: req.body.old_price,
+        quantity: req.body.quantity
     });
 
     await product.save();

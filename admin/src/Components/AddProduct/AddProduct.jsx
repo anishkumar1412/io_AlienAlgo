@@ -10,7 +10,7 @@ function AddProduct() {
         category: "women",
         new_price: "",
         old_price: "",
-        quantity:""
+        quantity: ""
     });
 
     const changeHandler = (e) => {
@@ -35,8 +35,8 @@ function AddProduct() {
             },
             body: formData,
         })
-        .then((resp) => resp.json())
-        .then((data) => { responseData = data });
+            .then((resp) => resp.json())
+            .then((data) => { responseData = data });
 
         if (responseData.success) {
             const product = {
@@ -53,10 +53,10 @@ function AddProduct() {
                 },
                 body: JSON.stringify(product),
             })
-            .then((resp) => resp.json())
-            .then((data) => {
-                data.success ? alert("Product Added") : alert('Failed to add product');
-            });
+                .then((resp) => resp.json())
+                .then((data) => {
+                    data.success ? alert("Product Added") : alert('Failed to add product');
+                });
         } else {
             alert('Failed to upload image');
         }
@@ -86,10 +86,10 @@ function AddProduct() {
                     <option value="kid">Kid</option>
                 </select>
                 <div style={{
-                   
+
                 }}>
-                <p>Quantity</p>
-                    <input className='quantity-input' value={productDetails.quantity} onChange={changeHandler} type="text" name='Quantity' placeholder='Enter the quantity' />
+                    <p>Quantity</p>
+                    <input className='quantity-input' value={productDetails.quantity} onChange={changeHandler} type="number" name='quantity' placeholder='Enter the quantity' />
 
                 </div>
             </div>

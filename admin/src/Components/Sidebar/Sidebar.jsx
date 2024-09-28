@@ -3,6 +3,8 @@ import './Sidebar.css'
 import { Link } from 'react-router-dom'
 import add_product_icon from '../../assets/Admin_Assets/Product_Cart.svg'
 import list_product_icon from '../../assets/Admin_Assets/Product_list_icon.svg'
+import orderlist from '../../assets/Admin_Assets/orderlist.svg'
+import invoice from '../../assets/Admin_Assets/invoice.png'
 import dashboard from '../../assets/Admin_Assets/dashboard.png'
 
 function Sidebar() {
@@ -28,13 +30,13 @@ function Sidebar() {
             </Link>
             <Link to={'/orderlist'} style={{ textDecoration: "none" }} >
                 <div className="sidebar-item">
-                    <img src={list_product_icon} alt="" />
+                    <img src={orderlist} alt="" />
                     <p>Order List</p>
                 </div>
             </Link>
             <Link to={'/invoice'} style={{ textDecoration: "none" }} >
                 <div className="sidebar-item">
-                    <img src={list_product_icon} alt="" />
+                    <img src={invoice} alt="" />
                     <p>Invoice Generator</p>
                 </div>
             </Link>
