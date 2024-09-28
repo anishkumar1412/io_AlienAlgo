@@ -9,7 +9,7 @@ function Popular() {
     const [data_product, setData_product] = useState([])
 
     useEffect(() => {
-        fetch('http://localhost:4000/popularinwomen').then((response) => response.json()).then((data) => setData_product(data))
+        fetch('http://localhost:4000/popularinelectronics').then((response) => response.json()).then((data) => setData_product(data))
     }, [])
 
     return (

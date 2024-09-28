@@ -220,8 +220,8 @@ app.get('/newcollections', async (req, res) => {
 });
 
 // Creating new endpoint for popular in women
-app.get('/popularinwomen', async (req, res) => {
-    let products = await Product.find({ category: "women" });
+app.get('/popularinelectronics', async (req, res) => {
+    let products = await Product.find({ category: "electronics" });
     let popularinwomen = products.slice(0, 4);
     res.send(popularinwomen);
 });
