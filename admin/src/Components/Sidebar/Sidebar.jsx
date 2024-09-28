@@ -5,6 +5,7 @@ import add_product_icon from '../../assets/Admin_Assets/Product_Cart.svg'
 import list_product_icon from '../../assets/Admin_Assets/Product_list_icon.svg'
 import orderlist from '../../assets/Admin_Assets/orderlist.svg'
 import invoice from '../../assets/Admin_Assets/invoice.png'
+import navigation from '../../assets/Admin_Assets/navigation.svg'
 import dashboard from '../../assets/Admin_Assets/dashboard.png'
 
 function Sidebar() {
@@ -42,8 +43,9 @@ function Sidebar() {
             </Link>
             <Link to={'/navigation'} style={{ textDecoration: "none" }} >
                 <div className="sidebar-item">
-                    <img src={list_product_icon} alt="" />
+                    <img class="svg" src={navigation} alt="" />
                     <p>Navigation</p>
+                    
                 </div>
             </Link>
         

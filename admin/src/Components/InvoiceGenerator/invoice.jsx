@@ -4,7 +4,7 @@ import './invoice.css'
 
 const InvoiceGenerator = () => {
   const [orderProducts, setOrderProducts] = useState([]);
-  const [invoiceNumber, setInvoiceNumber] = useState(Math.floor(1000 + Math.random() * 9000)); 
+  const [invoiceNumber, setInvoiceNumber] = useState(Math.floor(1000 + Math.random() * 9000));
   const invoiceRef = useRef();
 
 
@@ -18,7 +18,7 @@ const InvoiceGenerator = () => {
     fetchOrders();
   }, []);
 
-  
+
   const handlePrint = useReactToPrint({
     content: () => invoiceRef.current,
   });
@@ -36,7 +36,7 @@ const InvoiceGenerator = () => {
         <div key={order._id} className="invoice-section">
           <h2>Invoice for {order.customerName}</h2>
 
-         
+
           <div ref={invoiceRef}>
             <h3>Invoice Number: {invoiceNumber + orderIndex}</h3>
             <p>Client: {order.customerName}</p>
@@ -65,7 +65,7 @@ const InvoiceGenerator = () => {
             <h3>Total: ${calculateTotal(order.products)}</h3>
           </div>
 
-       
+
           <button onClick={handlePrint}>Print Invoice</button>
           <hr />
         </div>
