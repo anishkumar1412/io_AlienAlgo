@@ -10,7 +10,8 @@ function AddProduct() {
         category: "electronics",
         new_price: "",
         old_price: "",
-        quantity: ""
+        quantity: "",
+        cost: ""
     });
 
     const changeHandler = (e) => {
@@ -90,6 +91,8 @@ function AddProduct() {
                 }}>
                     <p>Quantity</p>
                     <input className='quantity-input' value={productDetails.quantity} onChange={changeHandler} type="number" name='quantity' placeholder='Enter the quantity' />
+                    <p>Cost</p>
+                    <input className='quantity-input' value={productDetails.cost} onChange={changeHandler} type="number" name='cost' placeholder='Enter the cost' />
 
                 </div>
             </div>
