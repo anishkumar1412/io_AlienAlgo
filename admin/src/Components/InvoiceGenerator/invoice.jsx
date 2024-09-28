@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { useReactToPrint } from 'react-to-print';
+import './invoice.css'
 
 const InvoiceGenerator = () => {
   const [orderProducts, setOrderProducts] = useState([]);
@@ -27,8 +28,9 @@ const InvoiceGenerator = () => {
   };
 
   return (
-    <div>
+  <div>
       <h1>Invoices</h1>
+    <div className='Invoice-space'>
 
       {orderProducts.map((order, orderIndex) => (
         <div key={order._id} className="invoice-section">
@@ -68,6 +70,7 @@ const InvoiceGenerator = () => {
           <hr />
         </div>
       ))}
+    </div>
     </div>
   );
 };

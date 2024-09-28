@@ -46,6 +46,7 @@ function Sidebar() {
                     <p>Navigation</p>
                 </div>
             </Link>
+        
         </div>
     )
 }

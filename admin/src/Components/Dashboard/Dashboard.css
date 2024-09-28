@@ -74,4 +74,20 @@ flex-grow: 0;
   .table th {
     background-color: #f1f1f1;
   }
+
+  .metric-card {
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    text-align: center;
+    width: 23%;
+    transition: transform 0.2s, box-shadow 0.2s; /* Add transition for smooth effect */
+  }
+  
+  .metric-card:hover {
+    transform: scale(1.05); /* Scale up on hover */
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2); /* Increase shadow on hover */
+    cursor: pointer; /* Change cursor to pointer */
+  }
   

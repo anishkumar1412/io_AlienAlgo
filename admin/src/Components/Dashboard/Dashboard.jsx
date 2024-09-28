@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom'; // Ensure you have this package installed
 import './Dashboard.css'; // Custom CSS for styling if required
 
 const Dashboard = () => {
+  const navigate = useNavigate(); // Initialize useNavigate
+
   // Placeholder data (this can come from props or API)
   const stockAlerts = [
     { orderId: '001', date: '2024-09-01', quantity: 100, alertAmt: 20, status: 'Low' },
@@ -21,6 +24,9 @@ const Dashboard = () => {
   const fetchInfo = async () => {
     try {
       const response = await fetch('http://localhost:4000/allproducts');
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
       const data = await response.json();
       setAllproducts(data);
     } catch (error) {
@@ -30,35 +36,37 @@ const Dashboard = () => {
 
   useEffect(() => {
     fetchInfo();
-  }, []); // Runs only once when the component mounts
+  }, []); 
 
   useEffect(() => {
-    setItemno(allproducts.length); // Updates item count when allproducts changes
-  }, [allproducts]); // Adds allproducts as a dependency
+    setItemno(allproducts.length); 
+  }, [allproducts]);
+
+  const handleMetricClick = (path) => {
+    navigate(path); 
+  };
 
   return (
     <div className="dashboard">
-      {/* Revenue, Sales Return, Purchase, Income Section */}
       <div className="metrics">
-        <div className="metric-card">
+        <div className="metric-card" onClick={() => handleMetricClick('/addproduct')}>
           <p>Total Products</p>
           <h3>{itemNo}</h3>
         </div>
-        <div className="metric-card">
+        <div className="metric-card" >
           <p>Total Store Value</p>
           <h3>+ 30,000</h3>
         </div>
-        <div className="metric-card">
+        <div className="metric-card" onClick={() => handleMetricClick('/listproduct')}>
           <p>Out of Stock</p>
           <h3>1</h3>
         </div>
-        <div className="metric-card">
+        <div className="metric-card" onClick={() => handleMetricClick('/listproduct')}>
           <p>All Categories</p>
           <h3>5</h3>
         </div>
       </div>
 
-      {/* Stock Alert and Top Selling Products Section */}
       <div className="tables">
         <div className="table-section">
           <h4>Stock Alert</h4>
