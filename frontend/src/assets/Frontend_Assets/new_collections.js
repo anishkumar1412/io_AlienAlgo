@@ -63,7 +63,7 @@ let new_collections = [
     image: p8_img,
     new_price: 100.0,
     old_price: 150.0,
-  },
+  }
 ];
 
 export default new_collections;

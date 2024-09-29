@@ -20,6 +20,8 @@ const Dashboard = () => {
 
   const [allproducts, setAllproducts] = useState([]);
   const [itemNo, setItemno] = useState(0);
+  const [totalPrice, setTotalPrice] = useState(0);
+  const [totalCost, setTotalCost] = useState(0);
 
   const fetchInfo = async () => {
     try {
@@ -36,15 +38,38 @@ const Dashboard = () => {
 
   useEffect(() => {
     fetchInfo();
-  }, []); 
+  }, []);
 
   useEffect(() => {
-    setItemno(allproducts.length); 
+    setItemno(allproducts.length);
+
   }, [allproducts]);
 
   const handleMetricClick = (path) => {
-    navigate(path); 
+    navigate(path);
   };
+
+
+
+  // Fetch products from the database
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        // Calculate total price and cost after fetching the data
+        const totalPriceCalc = allproducts.reduce((sum, product) => sum + product.new_price, 0);
+        const totalCostCalc = allproducts.reduce((sum, product) => sum + product.cost, 0);
+
+        setTotalPrice(totalPriceCalc);
+        setTotalCost(totalCostCalc);
+        setItemno(allproducts.length);
+      } catch (error) {
+        console.error('Error fetching products:', error);
+      }
+    };
+
+    fetchProducts();
+  }, []);
+
 
   return (
     <div className="dashboard">
@@ -54,12 +79,12 @@ const Dashboard = () => {
           <h3>{itemNo}</h3>
         </div>
         <div className="metric-card" >
-          <p>Total Store Value</p>
-          <h3>+ 30,000</h3>
+          <p>Benefits</p>
+          <h3>${totalPrice - totalCost}</h3>
         </div>
         <div className="metric-card" onClick={() => handleMetricClick('/listproduct')}>
-          <p>Out of Stock</p>
-          <h3>1</h3>
+          <p>Loss</p>
+          <h3>$450</h3>
         </div>
         <div className="metric-card" onClick={() => handleMetricClick('/listproduct')}>
           <p>All Categories</p>
