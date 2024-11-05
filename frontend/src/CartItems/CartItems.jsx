@@ -52,7 +52,7 @@ function CartItems() {
         };
 
         // Make the API request to send order data to backend
-        const response = await fetch('http://localhost:4000/addorderlist', {
+        const response = await fetch('https://io-alienalgo-1.onrender.com/addorderlist', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
