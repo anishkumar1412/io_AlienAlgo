@@ -95,8 +95,8 @@ const AntPathMap = () => {
   }, []);
 
   return (
-    <div>
-      <div id="map" style={{ height: '400px', width: '80%', marginLeft: '200' }}></div>
+    <div style={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
+      <div id="map" style={{ height: '400px', width: '100%', maxWidth: '1000px' }}></div>
     </div>
   );
 };

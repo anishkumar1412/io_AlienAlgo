@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { jsPDF } from 'jspdf';
-import 'jspdf-autotable';  // To support auto tables for the invoice structure
+import 'jspdf-autotable'; // To support auto tables for the invoice structure
 import './Order.css';
-import { FaDownload } from 'react-icons/fa';  // For the download icon
+import { FaDownload } from 'react-icons/fa'; // For the download icon
 
 function Order() {
   const [orderProducts, setOrderProducts] = useState([]);
@@ -41,14 +41,19 @@ function Order() {
       tableRows.push(productData);
     });
 
-    doc.autoTable(tableColumn, tableRows, { startY: 60 });
+    doc.autoTable({
+      head: [tableColumn],
+      body: tableRows,
+      startY: 60,
+    });
 
     // Add total amount at the end
+    const finalY = doc.autoTable.previous ? doc.autoTable.previous.finalY : 60;
     const totalAmount = order.products.reduce(
       (acc, product) => acc + product.quantity * product.total,
       0
     );
-    doc.text(`Total: $${totalAmount}, 20, doc.autoTable.previous.finalY + 10`);
+    doc.text(`Total: $${totalAmount}`, 20, finalY + 10);
 
     // Save the PDF
     doc.save(`Invoice_${order.customerName}_${orderIndex}.pdf`);
